@@ -5,4 +5,4 @@ jfrogpath:
   qa: libs-release-local
   prod: libs-release-local
   
-version: "1.1.13"
+version: ".19"
