@@ -6,8 +6,8 @@
   get_url:
    url: "{{jfrogurl}}/{{jfrogpath[env]}}/helloworld/helloworld-{{version}}.war"
    dest: /tmp/
-   username: danalakshmidevops08@gmail.com
-   password: "Ch683212@"
+   username: sanjeevkhadka86@gmail.com
+   password: "Password1!"
 
 
 - name: Copy war file to the webapps folder
