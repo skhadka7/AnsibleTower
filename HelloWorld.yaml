@@ -1,0 +1,6 @@
+---
+- hosts: ec2-34-207-156-59.compute-1.amazonaws.com
+  become: true
+  become_method: sudo
+  roles:
+   - HelloWorld
