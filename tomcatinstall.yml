@@ -1,0 +1,6 @@
+---
+- hosts: ec2-3-227-18-90.compute-1.amazonaws.com
+  become: true
+  become_method: sudo 
+  roles: 
+   - tomcatinstall
