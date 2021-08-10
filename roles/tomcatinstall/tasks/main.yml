@@ -1,0 +1,44 @@
+---
+- name: install java
+  yum:
+   name:
+     - java-1.8.0-openjdk
+     - java-1.8.0-openjdk-devel
+- name: Download the tomcat war file 
+  get_url: 
+    url: https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.69/bin/apache-tomcat-8.5.69.tar.gz
+    dest: /opt/
+    
+- name: Create the tomcat directory
+  file:
+   path: /opt/tomcat
+   state: directory
+   
+- name: untar the tomcat war file
+  shell:   tar -xzvf /opt/apache-tomcat-8.5.69.tar.gz -C /opt/tomcat/ --strip-components=1
+
+- name: Create the tomcat group
+  group:  name=tomcat state=present
+  
+- name: Create the tomcat user and add it to the tomcat group
+  user: name=tomcat group=tomcat state=present shell=/bin/bash home=/home/tomcat createhome=yes
+  
+- name: permissions
+  shell:  chmod -R 755 /opt/tomcat/
+  
+- name: change the ownership of opt/tomcat folder
+  shell: chown -R tomcat:tomcat /opt/tomcat
+  
+- name: tomcat service file
+  get_url:
+    url: https://devopsjune.s3.amazonaws.com/tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+    
+- name: enable the service
+  shell: "systemctl enable tomcat"
+  
+- name: daemon reload
+  shell: systemctl daemon-reload
+  
+- name : start the tomcat
+  shell: systemctl start tomcat

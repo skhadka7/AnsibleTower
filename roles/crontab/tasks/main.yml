@@ -1,0 +1,15 @@
+---
+- name: Crontab Basic Introduction
+  shell: touch cron.conf
+
+- name: create cronjob to schedule output after every year,month,week,hour,minute
+  shell: echo " * * * * * pwd >>  /tmp/output.txt " > cron.conf
+
+- name: configure cronjob via crontab scheduler
+  shell:  crontab cron.conf
+
+- name: listing cronjobs via crontab scheduler
+  shell: crontab -l
+
+- name: remove cronjob from crontab scheduler
+  shell: crontab -r
